@@ -1,0 +1,88 @@
+.schedule-page {
+    padding: 6rem 2rem;
+    max-width: 960px;
+    margin: 0 auto;
+    color: #fff;
+    line-height: 1.6;
+}
+
+.schedule-page h2 {
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.schedule-subtitle {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.schedule-block {
+    margin-bottom: 4rem;
+}
+
+.schedule-block h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 0.5rem;
+}
+
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.8rem;
+}
+
+.schedule-grid > div {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+}
+
+.schedule-grid h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: #eee;
+    border-left: 3px solid #fff;
+    padding-left: 0.6rem;
+}
+
+.schedule-grid ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.schedule-grid li {
+    margin-bottom: 0.4rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.schedule-grid li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.schedule-note {
+    font-size: 1rem;
+    color: #aaa;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.schedule-note a {
+    color: #fff;
+    text-decoration: underline;
+    font-weight: 500;
+}

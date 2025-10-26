@@ -1,0 +1,93 @@
+/* src/components/ElectricBorder.css */
+
+.electric-border {
+    position: relative;
+    display: inline-block;
+    border-radius: inherit;
+    --electric-border-color: #5227FF;
+    --eb-border-width: 2px;
+}
+
+/* SVG layer fills nothing visually but provides filter */
+.eb-svg {
+    position: absolute;
+    inset: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    overflow: visible;
+}
+
+/* stroke element that gets the filter */
+.eb-layers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* main stroke (frame) */
+.eb-stroke {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-sizing: border-box;
+    border: var(--eb-border-width) solid rgba(255,255,255,0.06);
+    background: transparent;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+/* two glow layers for depth */
+.eb-glow-1,
+.eb-glow-2,
+.eb-background-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.eb-glow-1 {
+    box-shadow: 0 0 18px 6px rgba(82,39,255,0.08);
+    mix-blend-mode: screen;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.eb-glow-2 {
+    box-shadow: 0 0 34px 14px rgba(82,39,255,0.06);
+    mix-blend-mode: screen;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+}
+
+.electric-border:hover .eb-glow-1 {
+    opacity: 1;
+}
+
+.electric-border:hover .eb-glow-2 {
+    opacity: 1;
+}
+
+/* soft background halo */
+.eb-background-glow {
+    background: radial-gradient(circle at center, rgba(82,39,255,0.06), transparent 45%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.electric-border:hover .eb-background-glow {
+    opacity: 1;
+}
+
+/* content sits above layers */
+.eb-content {
+    position: relative;
+    z-index: 2;
+    display: block;
+}
+
+/* helper: adapt stroke color from CSS var when hovering */
+.electric-border:hover .eb-stroke {
+    border-color: var(--electric-border-color);
+    box-shadow: 0 0 calc(var(--eb-border-width) * 6) var(--electric-border-color, #5227FF);
+}

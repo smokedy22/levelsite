@@ -1,0 +1,134 @@
+/* PricingCards.css */
+.pricing-container {
+    padding: 2rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cards-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
+/* ------------------------------------------------------------
+   Базовые переменные и стили карточки
+------------------------------------------------------------ */
+.pricing-card {
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --glow-color: rgba(255, 255, 255, 0.8);
+    --glow-intensity: 0.3;
+
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.5s cubic-bezier(0.03, 0.98, 0.52, 0.99),
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+    transform-style: preserve-3d;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* внутреннее размытие */
+.pricing-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--glow-color);
+    filter: blur(30px);
+    opacity: calc(var(--glow-intensity) * 0.1);
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.pricing-card:hover::before {
+    opacity: calc(var(--glow-intensity) * 0.3);
+}
+
+/* внешний glow */
+.card-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+            circle at center,
+            var(--glow-color) 40%,
+            transparent 80%
+    );
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease;
+}
+
+.pricing-card:hover .card-glow {
+    opacity: var(--glow-intensity);
+}
+
+/* граница теперь тоже светится */
+.pricing-card:hover {
+    /* основной тень + glow рамки */
+    box-shadow:
+            0 0 calc(var(--glow-intensity) * 12px) var(--glow-color),
+            0 10px 20px rgba(0, 0, 0, 0.2);
+    border-color: var(--glow-color);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transform: translateZ(30px);
+}
+
+.card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.price {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    background: linear-gradient(to right, #fff, #aaa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.card-content p {
+    color: rgba(255, 255, 255, 0.7);
+    flex-grow: 1;
+}
+
+.buy-btn {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 999px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    transform: translateZ(20px);
+}
+
+.buy-btn:hover {
+    background: #ddd;
+    transform: translateZ(20px) translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    .pricing-card {
+        padding: 1rem;
+        transform: none !important;
+    }
+}
