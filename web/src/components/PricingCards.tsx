@@ -1,128 +1,137 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import "./PricingCards.css";
-import ElectricBorder from "./ElectricBorder";
 
 interface Subscription {
     id: number;
     name: string;
     price: string;
-    description: string;
-    glowIntensity: number;
-    glowColor: string;
+    perSession?: string;
+    category: 'single' | 'pension' | 'volleyball' | 'fitness';
+    featured?: boolean;
+}
+
+interface Category {
+    id: string;
+    label: string;
+    title: string;
+    subscriptions: Subscription[];
 }
 
 const PricingCards: React.FC = () => {
-    const cardsRef = useRef<Array<HTMLDivElement | null>>([]);
+    const [activeCategory, setActiveCategory] = useState<string>('all');
 
-    const subscriptions: Subscription[] = [
+    const categoriesData: Category[] = [
         {
-            id: 1,
-            name: "Разовое посещение",
-            price: "14 рублей",
-            description: "Одно занятие в любом направлении",
-            glowIntensity: 0.3,
-            glowColor: "#8B4513"
+            id: 'single',
+            label: 'Разовое посещение',
+            title: 'РАЗОВОЕ ПОСЕЩЕНИЕ',
+            subscriptions: [
+                { id: 1, name: "Пробная тренировка", price: "БЕСПЛАТНО", perSession: "при покупке абонемента", category: 'single' },
+                { id: 2, name: "Пробная тренировка", price: "10 р", category: 'single' },
+                { id: 3, name: "Групповая тренировка", price: "17 р", perSession: "волейбол / фитнес", category: 'single' }
+            ]
         },
         {
-            id: 2,
-            name: "Абонемент на 4 занятия",
-            price: "50 рублей",
-            description: "Экономия 12 рублей",
-            glowIntensity: 0.5,
-            glowColor: "#C0C0C0"
+            id: 'pension',
+            label: 'Для пенсионеров',
+            title: 'АБОНЕМЕНТ ДЛЯ ПЕНСИОНЕРОВ',
+            subscriptions: [
+                { id: 4, name: "4 тренировки", price: "50 р", perSession: "12,5 р / тренировка", category: 'pension' },
+                { id: 5, name: "8 тренировок", price: "88 р", perSession: "11 р / тренировка", category: 'pension' },
+                { id: 6, name: "12 тренировок", price: "114 р", perSession: "9,5 р / тренировка", category: 'pension', featured: true }
+            ]
         },
         {
-            id: 3,
-            name: "Абонемент на 8 занятий",
-            price: "88 рублей",
-            description: "Экономия 24 рублей",
-            glowIntensity: 0.8,
-            glowColor: "gold"
+            id: 'volleyball',
+            label: 'Волейбол',
+            title: 'АБОНЕМЕНТ «ВОЛЕЙБОЛ»',
+            subscriptions: [
+                { id: 7, name: "4 тренировки", price: "64 р", perSession: "16 р / тренировка", category: 'volleyball' },
+                { id: 8, name: "8 тренировок", price: "114 р", perSession: "14,2 р / тренировка", category: 'volleyball' },
+                { id: 9, name: "12 тренировок", price: "158 р", perSession: "13,1 р / тренировка", category: 'volleyball', featured: true }
+            ]
         },
         {
-            id: 4,
-            name: "Абонемент на 12 занятий",
-            price: "114 рублей",
-            description: "Экономия 54 рублей",
-            glowIntensity: 1.2,
-            glowColor: "#B0002A"
+            id: 'fitness',
+            label: 'Фитнес',
+            title: 'АБОНЕМЕНТ «ФИТНЕС»',
+            subscriptions: [
+                { id: 10, name: "4 тренировки", price: "60 р", perSession: "15 р / тренировка", category: 'fitness' },
+                { id: 11, name: "8 тренировок", price: "99 р", perSession: "12,3 р / тренировка", category: 'fitness' },
+                { id: 12, name: "12 тренировок", price: "124 р", perSession: "10,3 р / тренировка", category: 'fitness', featured: true }
+            ]
         }
     ];
 
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
-        const card = cardsRef.current[index];
-        if (!card) return;
+    const filterButtons = [
+        { id: 'all', label: 'Все абонементы' },
+        { id: 'single', label: 'Разовое посещение' },
+        { id: 'pension', label: 'Для пенсионеров' },
+        { id: 'volleyball', label: 'Волейбол' },
+        { id: 'fitness', label: 'Фитнес' }
+    ];
 
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const angleX = (y - centerY) / 20;
-        const angleY = (centerX - x) / 20;
-
-        card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg)`;
-        card.style.boxShadow = `0 ${Math.abs(angleY) * 10}px ${Math.abs(angleY) * 20}px rgba(0, 0, 0, 0.3)`;
-    };
-
-    const handleMouseLeave = (index: number) => {
-        const card = cardsRef.current[index];
-        if (card) {
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-            card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
-        }
-    };
+    const displayData = activeCategory === 'all'
+        ? categoriesData
+        : [categoriesData.find(cat => cat.id === activeCategory)!];
 
     return (
         <div className="pricing-container">
-            <div className="cards-grid">
-                {subscriptions.map((sub, index) => {
-                    const vars: Record<string, string> = {
-                        "--glow-color": sub.glowColor,
-                        "--glow-intensity": String(sub.glowIntensity)
-                    };
 
-
-                    const isFeatured = sub.id === 4 || sub.price === "114 рублей";
-
-                    const cardContent = (
-                        <div
-                            key={sub.id}
-                            ref={(el: HTMLDivElement | null) => cardsRef.current[index] = el}
-                            className={`pricing-card${isFeatured ? " featured" : ""}`}
-                            onMouseMove={(e: React.MouseEvent<HTMLDivElement>) => handleMouseMove(e, index)}
-                            onMouseLeave={() => handleMouseLeave(index)}
-                            style={vars}
-                        >
-                            <div className="card-glow" />
-                            <div className="card-content">
-                                <h3>{sub.name}</h3>
-                                <div className="price">{sub.price}</div>
-                                <p>{sub.description}</p>
-                                <button className="buy-btn">Купить</button>
-                            </div>
-                        </div>
-                    );
-
-                    if (isFeatured) {
-                        return (
-                            <ElectricBorder
-                                key={sub.id}
-                                color={sub.glowColor}
-                                speed={1.2}
-                                chaos={1.4}
-                                thickness={3}
-                                className="pricing-eb-wrapper featured-wrapper"
-                                style={{ display: "block", borderRadius: 16 }}
-                            >
-                                {cardContent}
-                            </ElectricBorder>
-                        );
-                    }
-
-                    return cardContent;
-                })}
+            {/* Фильтры */}
+            <div className="hero-buttons pricing-filter-buttons">
+                {filterButtons.map(btn => (
+                    <button
+                        key={btn.id}
+                        className={`btn btn-attract ${activeCategory === btn.id ? 'btn-ruby' : 'btn-secondary'}`}
+                        onClick={() => setActiveCategory(btn.id)}
+                    >
+                        {btn.label}
+                    </button>
+                ))}
             </div>
+
+            {displayData.map(category => (
+                <div key={category.id} className="pricing-section">
+                    <h2 className="pricing-title">{category.title}</h2>
+
+                    {/* Liquid Glass description - одинаковый для всех категорий */}
+                    <div className="pricing-description glass-panel">
+                        Срок действия любого абонемента — 45 дней
+                        <br />
+                        <br />
+                        Срок активации абонемента - 15 дней со дня покупки
+                    </div>
+
+                    <div className="pricing-table">
+                        <div className="pricing-header-row">
+                            <span></span>
+                            <span>Цена</span>
+                            <span>Цена за тренировку</span>
+                        </div>
+
+                        {category.subscriptions.map(sub => (
+                            <div
+                                key={sub.id}
+                                className={`pricing-row ${sub.featured ? "featured-row" : ""}`}
+                            >
+                                <span className="row-name">
+                                    {sub.name}
+                                    {sub.perSession && (
+                                        <small>{sub.perSession}</small>
+                                    )}
+                                </span>
+
+                                <span className="row-price">{sub.price}</span>
+
+                                <span className="row-per-session">
+                                    {sub.perSession?.includes("р") ? sub.perSession : ""}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
         </div>
     );
 };

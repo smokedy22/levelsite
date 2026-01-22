@@ -143,15 +143,13 @@ export default function App() {
                 path="/pricing"
                 element={
                     <Shell>
-                        <div style={{ padding: "6rem 1.5rem" }}>
-                            <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>
-                                Абонементы
-                            </h2>
+                        <div style={{ padding: "2.5rem 1.5rem 3rem" }}>
                             <PricingCards />
                         </div>
                     </Shell>
                 }
             />
+
 
             <Route
                 path="/coaches"
