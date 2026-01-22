@@ -755,3 +755,258 @@ nav.pill-nav .pill::before { display: none !important; }
     }
 }
 
+/* Добавьте эти стили в ваш styles.css */
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-attract {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-attract:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.btn-ruby {
+    background: linear-gradient(135deg, #e91e63, #c2185b);
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #2196f3, #1976d2);
+    color: white;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Режим работы на главной странице - уменьшенная версия */
+.work-hours {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.work-hours::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.work-hours-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.work-hours-icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    animation: pulse 2s infinite;
+}
+
+.work-hours h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.work-hours-content {
+    width: 100%;
+}
+
+.work-hours-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.work-hours-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.work-hours-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.work-hours-time {
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #e91e63, #2196f3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Анимация пульсации для иконки часов */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .work-hours {
+        padding: 1rem;
+        margin: 1.25rem 1rem;
+        max-width: 350px;
+    }
+
+    .work-hours-icon {
+        font-size: 1.5rem;
+    }
+
+    .work-hours h3 {
+        font-size: 1.1rem;
+    }
+
+    .work-hours-item {
+        flex-direction: column;
+        gap: 0.25rem;
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    .work-hours-label,
+    .work-hours-time {
+        width: 100%;
+        font-size: 0.85rem;
+    }
+
+    .work-hours-time {
+        font-size: 0.9rem;
+    }
+}
+
+/* Обновленные стили для кнопок */
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.btn-attract {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-attract:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.btn-ruby {
+    background: linear-gradient(135deg, #e91e63, #c2185b);
+    color: white;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #2196f3, #1976d2);
+    color: white;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        margin-top: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Герой контент должен иметь меньше отступов */
+.hero-content {
+    padding-bottom: 2rem;
+}
+
+/* Футер должен быть виден */
+.footer {
+    position: relative;
+    z-index: 10;
+}

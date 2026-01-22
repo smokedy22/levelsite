@@ -5,17 +5,17 @@ import "./components/PillNav.css";
 import "./styles.css";
 import "./components/LiquidChrome.css";
 import LiquidChrome from "./components/LiquidChrome";
-import Stories from "./components/Stories";
 import PricingCards from "./components/PricingCards";
 import CoachesCards from "./components/CoachesCards";
 import Schedule from "./components/Schedule";
+import TrainingsPage from "./components/TrainingsPage";
 
 const navItems = [
     { label: "Главная", href: "/" },
     { label: "Расписание", href: "/schedule" },
     { label: "Абонементы", href: "/pricing" },
     { label: "Тренеры", href: "/coaches" },
-    { label: "Контакты", href: "/contacts" }
+    { label: "Тренировки", href: "/trainings" }
 ];
 
 function Shell({ children }: { children: React.ReactNode }) {
@@ -53,8 +53,12 @@ function Shell({ children }: { children: React.ReactNode }) {
                         <p>Речицкий проспект, 108А (2 этаж)</p>
                         <p>+375 25 955-98-98</p>
                         <p>
-                            <a href="https://www.instagram.com/levelgomel/" target="_blank" rel="noreferrer">
-                                Instagram @levelgomel
+                            <a
+                                href="https://www.instagram.com/levelgomel/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+
                             </a>
                         </p>
                     </div>
@@ -78,23 +82,50 @@ export default function App() {
                             <div className="hero-content">
                                 <h1>LEVEL — ЭТО УРОВЕНЬ</h1>
                                 <p>
-                                    Групповые и персональные тренировки, более 25 направлений,
+                                    Групповые тренировки, более 25 направлений, волейбол,
                                     детские занятия.
                                 </p>
-                                <a
-                                    className="btn btn-attract btn-ruby"
-                                    href="https://www.instagram.com/levelgomel/"
-                                    target="_blank"
-                                    rel="noreferrer"
-                                >
-                                    Напишите Нам!
-                                </a>
+
+                                <div className="work-hours">
+                                    <div className="work-hours-header">
+                                        <div className="work-hours-icon">🕐</div>
+                                        <h3>Режим работы</h3>
+                                    </div>
+                                    <div className="work-hours-content">
+                                        <div className="work-hours-grid">
+                                            <div className="work-hours-item">
+                                                <span className="work-hours-label">Будни:</span>
+                                                <span className="work-hours-time">с 9:00 до 21:00</span>
+                                            </div>
+                                            <div className="work-hours-item">
+                                                <span className="work-hours-label">Выходные:</span>
+                                                <span className="work-hours-time">с 10:00 до 19:00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="hero-buttons">
+                                    <a
+                                        className="btn btn-attract btn-ruby"
+                                        href="https://www.instagram.com/levelgomel/"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        Групповые тренировки
+                                    </a>
+                                    <a
+                                        className="btn btn-attract btn-secondary"
+                                        href="https://www.instagram.com/sc_level/"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        Волейбол
+                                    </a>
+                                </div>
                             </div>
                             <div className="hero-overlay-dim" aria-hidden="true" />
                         </header>
-                        <section className="stories-wrap">
-                            <Stories />
-                        </section>
                     </Shell>
                 }
             />
@@ -113,7 +144,9 @@ export default function App() {
                 element={
                     <Shell>
                         <div style={{ padding: "6rem 1.5rem" }}>
-                            <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>Абонементы</h2>
+                            <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>
+                                Абонементы
+                            </h2>
                             <PricingCards />
                         </div>
                     </Shell>
@@ -125,8 +158,21 @@ export default function App() {
                 element={
                     <Shell>
                         <div style={{ padding: "6rem 1.5rem" }}>
-                            <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>Наши тренеры</h2>
+                            <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>
+                                Наши тренеры
+                            </h2>
                             <CoachesCards />
+                        </div>
+                    </Shell>
+                }
+            />
+
+            <Route
+                path="/trainings"
+                element={
+                    <Shell>
+                        <div style={{ padding: "6rem 1.5rem" }}>
+                            <TrainingsPage />
                         </div>
                     </Shell>
                 }

@@ -1,6 +1,15 @@
 import React from "react";
 import "./CoachesCards.css";
 
+import ira from "../assets/ira.jpg";
+import lera from "../assets/lera.jpg";
+import katya from "../assets/katya.jpg";
+import nadya from "../assets/nadya.jpg";
+import marina from "../assets/marina.jpg";
+import tanya from "../assets/tanya.jpg";
+import ruslan from "../assets/ruslan.jpg";
+import olya from "../assets/olya.jpg";
+
 type Coach = {
     name: string;
     role: string;
@@ -11,42 +20,42 @@ const coaches: Coach[] = [
     {
         name: "Ира",
         role: "Тренер групповых направлений",
-        src: new URL("../../dist/coaches/ira.jpg", import.meta.url).href
+        src: ira
     },
     {
         name: "Лера",
         role: "Тренер групповых направлений",
-        src: new URL("../../dist/coaches/lera.jpg", import.meta.url).href
+        src: lera
     },
     {
         name: "Катя",
         role: "Тренер групповых направлений",
-        src: new URL("../../dist/coaches/katya.jpg", import.meta.url).href
+        src: katya
     },
     {
         name: "Надя",
         role: "Хореограф",
-        src: new URL("../../dist/coaches/nadya.jpg", import.meta.url).href
+        src: nadya
     },
     {
         name: "Марина",
         role: "Тренер групповых направлений",
-        src: new URL("../../dist/coaches/marina.jpg", import.meta.url).href
+        src: marina
     },
     {
         name: "Таня",
         role: "Хореограф",
-        src: new URL("../../dist/coaches/tanya.jpg", import.meta.url).href
+        src: tanya
     },
     {
         name: "Руслан",
         role: "Тренер по волейболу",
-        src: new URL("../../dist/coaches/ruslan.jpg", import.meta.url).href
+        src: ruslan
     },
     {
         name: "Оля",
         role: "Тренер групповых направлений",
-        src: new URL("../../dist/coaches/olya.jpg", import.meta.url).href
+        src: olya
     }
 ];
 
