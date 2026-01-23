@@ -1,4 +1,30 @@
-/* улучшенные стеклянные кнопки — сильнее выделяются на тёмном фоне */
+.site-liquid {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+}
+
+.site-liquid canvas {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    display: block !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+    transform: translateZ(0) !important;
+    will-change: transform !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Улучшенные стеклянные кнопки */
 .btn-attract {
     color: #0b0b0b;
     background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,245,245,0.95) 100%);
@@ -47,7 +73,7 @@
     box-shadow: 0 14px 40px rgba(0,0,0,0.62);
 }
 
-/* accent outline для контраста (использовать как дополнительный состояние) */
+/* accent outline для контраста */
 .btn-glass:focus,
 .bg-btn:focus,
 .btn-attract:focus {
@@ -61,10 +87,18 @@
     letter-spacing: 0.02em;
 }
 
-/* optional: яркий акцент (если нужно ещё сильнее выделить — применять класс .btn-accent) */
+/* optional: яркий акцент */
 .btn-accent {
     background: linear-gradient(180deg,#ffffff,#f2f2f2);
     color: #0a0a0a;
     border: 1px solid rgba(255,255,255,0.36);
     box-shadow: 0 18px 48px rgba(0,0,0,0.65);
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .site-liquid canvas {
+        transform: translateZ(0) scale(1) !important;
+        -webkit-transform: translateZ(0) scale(1) !important;
+    }
 }

@@ -20,10 +20,9 @@ const navItems = [
 
 function Shell({ children }: { children: React.ReactNode }) {
     const { pathname } = useLocation();
-    const pageClass = pathname === "/" ? "page no-scroll" : "page";
 
     return (
-        <div className={pageClass}>
+        <div className="page">
             <PillNav
                 items={navItems}
                 activeHref={pathname}
@@ -33,6 +32,7 @@ function Shell({ children }: { children: React.ReactNode }) {
                 pillTextColor="#ffffff"
             />
 
+            // В вашем App.tsx обновите использование LiquidChrome:
             <LiquidChrome
                 baseColor={[0.03, 0.03, 0.035]}
                 highlightColor={[1, 1, 1]}
@@ -44,7 +44,9 @@ function Shell({ children }: { children: React.ReactNode }) {
                 className="site-liquid"
             />
 
-            {children}
+            <div className="main-content">
+                {children}
+            </div>
 
             <footer className="footer">
                 <div className="grid">
@@ -52,15 +54,7 @@ function Shell({ children }: { children: React.ReactNode }) {
                         <h4>LEVEL — Гомель</h4>
                         <p>Речицкий проспект, 108А (2 этаж)</p>
                         <p>+375 25 955-98-98</p>
-                        <p>
-                            <a
-                                href="https://www.instagram.com/levelgomel/"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
 
-                            </a>
-                        </p>
                     </div>
                     <div>
                         <small>© {new Date().getFullYear()} LEVEL. Сделано с ❤️</small>
@@ -149,7 +143,6 @@ export default function App() {
                     </Shell>
                 }
             />
-
 
             <Route
                 path="/coaches"
